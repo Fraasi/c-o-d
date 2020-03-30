@@ -1,0 +1,22 @@
+{
+  "name": "cod",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel src/index.html --open",
+    "build": "parcel build src/index.html --public-url ./ --target browser --no-source-maps --out-dir docs"
+  },
+  "keywords": [],
+  "author": "Fraasi <fraasi.gh@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "futility": "git+https://github.com/Fraasi/futility.git",
+    "leaflet": "^1.6.0",
+    "leaflet-dialog": "^1.0.5"
+  },
+  "devDependencies": {
+    "cssnano": "^4.1.10"
+  }
+}
