@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel src/index.html --open",
+    "prebuild": "rm -rf docs/",
     "build": "parcel build src/index.html --public-url ./ --target browser --no-source-maps --out-dir docs"
   },
   "keywords": [],
