@@ -22,17 +22,30 @@
     }
 
     body {
-      padding: 1rem;
+      padding: 0.2rem 1rem 1rem 1rem;
       overflow: auto;
     }
   </style>
   <link rel="stylesheet" href="table.css">
-  <!-- <script src="https://unpkg.com/@ag-grid-enterprise/all-modules@24.0.0/dist/ag-grid-enterprise.min.js"></script> -->
+
 </head>
 
 <body>
-  <div id="myGrid" class="ag-theme-alpine-dark" style="height: 100%;"></div>
+  <!-- <div id="container"> -->
+    <div class="header">
+      <h3>
+        Causes of death by country in 2017
+      </h3>
+      <h5 class="header-totals">
+      </h5>
+      <h5>
+        Data from <a href="https://ourworldindata.org/causes-of-death" target="_blank">ourworldindata.org</a> & <a
+          href="https://data.world/edmadrigal/world-population-json">data.world</a>
 
+      </h5>
+    </div>
+    <div id="myGrid" class="ag-theme-alpine-dark"></div>
+  <!-- </div> -->
   <script src="table.js"></script>
 </body>
 

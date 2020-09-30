@@ -3,10 +3,8 @@ import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.css'
 import { Grid as agGrid } from 'ag-grid-community'
 
 import codsJson from './assets/cods-table.json'
-console.log('codsJson:', codsJson[0])
 
-const fields = Object.keys(codsJson[0])
-console.log('fields:', fields)
+const fields = Object.keys(codsJson[0]).sort()
 
 const columnDefs = fields.map(field => {
   if (field === 'Country') {
@@ -15,19 +13,20 @@ const columnDefs = fields.map(field => {
       children: [
         {
           headerName: field,
-          headerTooltip: field,
           field: field + '.Country',
           pinned: 'left',
           filter: true,
-          width: 120,
+          width: 140,
           wrapText: true,
-          cellStyle: {'line-height': 'unset'}
+          cellStyle: ({ value }) => {
+            if (value.length >= 16) return { 'line-height': 'unset' }
+          }
         },
         {
           headerName: 'Total #',
           field: field + '.Total',
           pinned: 'left',
-          width: 80,
+          width: 100,
         }
       ]
     }
@@ -35,14 +34,17 @@ const columnDefs = fields.map(field => {
   return {
     field: field,
     wrapText: true,
+    headerTooltip: field,
     children: [
       {
         headerName: '#',
-        field: field + '.num'
+        field: field + '.num',
+        maxWidth: 60,
       },
       {
         headerName: '%',
-        field: field + '.per'
+        field: field + '.per',
+        maxWidth: 60,
       }
     ]
   }
@@ -50,46 +52,31 @@ const columnDefs = fields.map(field => {
 
 const gridOptions = {
   columnDefs: columnDefs,
+  animateRows: true,
   defaultColDef: {
+    sortingOrder: ['desc', 'asc', null],
     autoHeight: true,
-    autoWidth: true,
-    // flex: 1,
-    // maxWidth: 90,
     minWidth: 90,
     sortable: true,
-    resizable: true,
+    // resizable: true,
+    // floatingFilter: true, // makes a new row, not cool
   },
   rowData: null,
   getRowStyle: function (params) {
     if (params.node.rowPinned) {
-      return { 'font-weight': 'bold' };
+      return { 'font-weight': 'bold' }
     }
   },
   getColStyle: function (params) {
     if (params.node.colPinned) {
-      return { 'font-weight': 'bold' };
+      return { 'font-weight': 'bold' }
     }
   },
-  onFilterChanged: function (e) {
-    console.log('onFilterChanged', e);
-    console.log('gridApi.getFilterModel() =>', e.api.getFilterModel());
-  },
-  onFilterModified: function (e) {
-    console.log('onFilterModified', e);
-    console.log('filterInstance.getModel() =>', e.filterInstance.getModel());
-    console.log(
-      'filterInstance.getModelFromUi() =>',
-      e.filterInstance.getModelFromUi()
-    );
-  },
-};
+}
 
 // setup the grid after the page has finished loading
 document.addEventListener('DOMContentLoaded', function () {
-  var gridDiv = document.querySelector('#myGrid');
-  const grid = new agGrid(gridDiv, gridOptions);
-  console.log('grid:', grid)
-
-  gridOptions.api.setRowData(codsJson);
-
-});
+  const gridDiv = document.querySelector('#myGrid')
+  const grid = new agGrid(gridDiv, gridOptions)
+  gridOptions.api.setRowData(codsJson)
+})

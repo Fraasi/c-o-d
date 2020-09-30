@@ -1,7 +1,40 @@
-/* .country-cell {
-  line-height: normal;
+/* custom table tweaks */
+.ag-header-cell-menu-button:not(.ag-header-menu-always-show) {
+  opacity: 1 !important;
 }
-.ag-theme-alpine-dark
-.ag-cell {
-  line-height: unset;
+
+/* header styles */
+body {
+  background: slategrey;
+  margin: 0;
+}
+/*
+#container {
+  display: grid;
 } */
+#myGrid {
+  height: 85vh;
+}
+
+h3, h4, h5 {
+  /* font-size: large; */
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.header {
+  width: 90vw;
+  /* height: 7vh; */
+  margin: 10px auto;
+  border: 1px dashed black;
+  text-align: center;
+  padding: 10px;
+  background-color: darkgrey;
+  box-shadow: 0px 0px 10px 1px;
+  /* font: 14px/16px Arial, Helvetica, sans-serif; */
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.header h2, .header h4 {
+  margin: 5px;
+}

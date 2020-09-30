@@ -36,6 +36,8 @@ const filterout = [
   'Central Europe, Eastern Europe, and Central Asia',
   'Tropical Latin America',
   'Central Latin America',
+  'Southern Latin America',
+  'Kosovo', // has no data
 ]
 
 const d = data.filter(el => {
