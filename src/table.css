@@ -3,19 +3,16 @@
   opacity: 1 !important;
 }
 
-/* header styles */
-body {
-  background: slategrey;
-  margin: 0;
-}
-/*
-#container {
-  display: grid;
-} */
 #myGrid {
   height: 85vh;
 }
 
+body {
+  background: slategrey;
+  margin: 0;
+}
+
+/* header styles */
 h3, h4, h5 {
   /* font-size: large; */
   margin-top: 0;

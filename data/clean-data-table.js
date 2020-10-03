@@ -37,6 +37,7 @@ const filterout = [
   'Tropical Latin America',
   'Central Latin America',
   'Southern Latin America',
+  'Oceania',
   'Kosovo', // has no data
 ]
 
@@ -51,6 +52,7 @@ const dd = d.map(country => {
   let total = 0
   Object.entries(country).forEach(([key, value]) => {
     key = key.replace(' (deaths)', '')
+
     if (key === 'Code' || key === 'Year' || key === 'Execution' || key === 'Intestinal infectious diseases' || key === 'Entity') return newObj
     if (typeof value === 'number' && key !== 'Year') {
       newObj[key] = Math.round(value)
@@ -62,7 +64,12 @@ const dd = d.map(country => {
     }
   })
   newObj['Total'] = total
-  newObj['Country'] = country.Entity
+  // fix papuas length to 17 for line-height
+  if (country.Entity === 'Papua New Guinea') {
+    newObj['Country'] = country.Entity + ' '
+  } else {
+    newObj['Country'] = country.Entity
+  }
   return newObj
 })
 
@@ -75,7 +82,7 @@ const ddd = dd.map(country => {
     if (typeof value === 'number' && key !== 'Total') {
       newObj[key] = {
         num: value,
-        per: ((value / country.Total) * 100).toFixed(2)
+        per: parseFloat(((value / country.Total) * 100).toFixed(2))
       }
     } else {
       newObj[key] = value

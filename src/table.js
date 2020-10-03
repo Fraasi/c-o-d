@@ -16,11 +16,16 @@ const columnDefs = fields.map(field => {
           field: field + '.Country',
           pinned: 'left',
           filter: true,
+          filterParams: {
+            buttons: ['clear'],
+            alwaysShowBothConditions: true,
+            defaultJoinOperator: 'OR',
+          },
           width: 140,
           wrapText: true,
           cellStyle: ({ value }) => {
-            if (value.length >= 16) return { 'line-height': 'unset' }
-          }
+            if (value.length >= 17) return { 'line-height': 'unset' }
+          },
         },
         {
           headerName: 'Total #',
@@ -45,6 +50,7 @@ const columnDefs = fields.map(field => {
         headerName: '%',
         field: field + '.per',
         maxWidth: 60,
+        comparator: (a, b) => a - b,
       }
     ]
   }
@@ -53,11 +59,13 @@ const columnDefs = fields.map(field => {
 const gridOptions = {
   columnDefs: columnDefs,
   animateRows: true,
+  debounceVerticalScrollbar: true,
   defaultColDef: {
     sortingOrder: ['desc', 'asc', null],
     autoHeight: true,
     minWidth: 90,
     sortable: true,
+    // enableValue: true,
     // resizable: true,
     // floatingFilter: true, // makes a new row, not cool
   },

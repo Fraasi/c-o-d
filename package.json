@@ -10,13 +10,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel src/index.html src/table.html --open",
     "prebuild": "rm -rf docs/",
-    "build": "parcel build table.html --public-url ./ --target browser --no-source-maps --out-dir docs"
+    "build": "parcel build src/index.html src/table.html --public-url ./ --target browser --no-source-maps --out-dir docs"
   },
   "keywords": [],
   "author": "Fraasi <fraasi.gh@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "@ag-grid-community/all-modules": "^24.0.0",
     "ag-grid-community": "^24.0.0",
     "futility": "git+https://github.com/Fraasi/futility.git",
     "leaflet": "^1.6.0",
