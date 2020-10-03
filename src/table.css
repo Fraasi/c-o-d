@@ -1,19 +1,19 @@
+/* custom table tweaks */
+.ag-header-cell-menu-button:not(.ag-header-menu-always-show) {
+  opacity: 1 !important;
+}
+
+#myGrid {
+  height: 82vh;
+}
+
 body {
   background: slategrey;
   margin: 0;
 }
 
-#map {
-  box-sizing: border-box;
-  width: 98vw;
-  height: 84vh;
-  margin: 0 auto;
-  border-radius: 5px;
-  border: 2px solid black;
-  box-shadow: 0px 0px 10px 1px;
-}
-
-h3, h4, h5 {
+/* header styles */
+h3, h4, h5, h6 {
   /* font-size: large; */
   margin-top: 0;
   margin-bottom: 0;
@@ -34,17 +34,4 @@ h3, h4, h5 {
 
 .header h2, .header h4 {
   margin: 5px;
-}
-
-.leaflet-control-dialog, .leaflet-popup-content-wrapper {
-  background-color: lightgrey !important;
-}
-
-@media (max-width: 480px) {
-  h3 {
-    font-size: medium;
-  }
-  #map {
-    height: 82vh;
-  }
 }
