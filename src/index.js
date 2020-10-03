@@ -6,7 +6,6 @@ import { percentageOf } from 'futility'
 import countries from './assets/countries-geojson'
 import population from './assets/worldpopulation'
 import deaths from './assets/cods.json'
-console.log('deaths:', deaths)
 
 const totalWorldPopulation = 7573472031
 const totalWorldDeaths = 254288406
@@ -24,6 +23,10 @@ const map = L.map('map', {
 	worldCopyJump: true,
 	maxBounds: bounds,
 	maxBoundsViscosity: 1.5,
+})
+
+map.on('click', e => {
+  updateDialog()
 })
 
 map.createPane('labels')
@@ -75,10 +78,10 @@ const geojson = L.geoJson(countries,
 					}
 				},
 				mouseout: (e) => { geojson.resetStyle(e.target) },
-				click: () => { updateDialog(layer.feature.id) },
+				click: (e) => { updateDialog(e.target.feature.id) },
 			})
 		},
-	}).addTo(map)
+  }).addTo(map)
 
 geojson.eachLayer((layer) => {
 	const country = deaths.find(count => count.Code === layer.feature.id)
@@ -92,7 +95,7 @@ geojson.eachLayer((layer) => {
 
 function updateDialog(id) {
 	if (!id) {
-		dialog.setContent('<h4>Click on a country to see statistics here.</h4>')
+		dialog.setContent('<h4>Click on a country to see statistics here.</h4><h4  style="position:absolute;bottom:0px;">To see all the data in a table, <a href="./table.html">click here</a></h4>')
 		if (window.matchMedia("(max-width: 480px)").matches) dialog.close()
 	} else {
 		const country = deaths.find(country => country.Code === id)
@@ -113,9 +116,9 @@ function updateDialog(id) {
 							return `${key} # of deaths: ${country[key].toLocaleString()} (${percent}%)</br>`
 						}
 						return `${key.replace(' (deaths)', '')}: ${country[key].toLocaleString()} (${percentageOf(country[key], country.Total, 2)}%)`
-					})
+          })
 					.join('</br>')
-				}`)
+  			}`)
 			dialogEl.scrollTo(0, 0)
 		}
 	}

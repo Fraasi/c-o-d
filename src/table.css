@@ -4,7 +4,7 @@
 }
 
 #myGrid {
-  height: 85vh;
+  height: 82vh;
 }
 
 body {
@@ -13,7 +13,7 @@ body {
 }
 
 /* header styles */
-h3, h4, h5 {
+h3, h4, h5, h6 {
   /* font-size: large; */
   margin-top: 0;
   margin-bottom: 0;
